@@ -1,44 +1,44 @@
 #!/usr/bin/env python
 class Brainfuck:
     def __init__(self, code, input): 
-        self.options = {}
+        self.instructions = {}
         self.code = code
         self.input = input
 
-    def options(): 
-        self.options = {
-            '>' : dp_incr(),
-            '<' : dp_decr(),
-            '+' : incr(),
-            '-' : decr(),
-            '.' : out(),
-            ',' : inp(),
-            '[' : jf(),
-            ']' : jb(),
+    def init_instructions(self): 
+        self.instructions = {
+            '>' : self.dp_incr(),
+            '<' : self.dp_decr(),
+            '+' : self.incr(),
+            '-' : self.decr(),
+            '.' : self.out(),
+            ',' : self.inp(),
+            '[' : self.jf(),
+            ']' : self.jb(),
             }
     
-    def dp_incr():
+    def dp_incr(self):
         print(">")
 
-    def dp_decr():
+    def dp_decr(self):
         print("<")
 
-    def incr():
+    def incr(self):
         print("+")
 
-    def decr():
+    def decr(self):
         print("-")
 
-    def out():
+    def out(self):
         print(".")
 
-    def inp():
+    def inp(self):
         print(",")
 
-    def jf():
+    def jf(self):
         print("[")
 
-    def jb():
+    def jb(self):
         print("]")
 
     def get_instruction():
@@ -48,8 +48,10 @@ class Brainfuck:
 
     def execute(self):
         print("Fucked")
-        while len(self.code) > 0
+        self.init_instructions()
+        while len(self.code) > 0:
             instruction = get_instruction()
+            self.instructions[instruction]()
 
 
 def brain_luck(code, input):
