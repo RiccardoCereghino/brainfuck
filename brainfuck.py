@@ -4,54 +4,72 @@ class Brainfuck:
         self.instructions = {}
         self.code = code
         self.input = input
+        self.data = []
+        self.data_pointer = 0
 
-    def init_instructions(self): 
-        self.instructions = {
-            '>' : self.dp_incr(),
-            '<' : self.dp_decr(),
-            '+' : self.incr(),
-            '-' : self.decr(),
-            '.' : self.out(),
-            ',' : self.inp(),
-            '[' : self.jf(),
-            ']' : self.jb(),
-            }
+    def execute_instruction(self, instruction):
+        failed = False
+        if instruction == '>':
+            failed = self.dp_incr()
+        if instruction == '<':
+            failed = self.dp_decr()
+        if instruction == '+':
+            failed = self.incr()
+        if instruction == '-':
+            failed = self.decr()
+        if instruction == '.':
+            failed = self.out()
+        if instruction == ',':
+            failed = self.inp()
+        if instruction == '[':
+            failed = self.jf()
+        if instruction == ']':
+            failed = self.jb()
+        return failed
     
     def dp_incr(self):
         print(">")
+        return True
 
     def dp_decr(self):
         print("<")
+        return True
 
     def incr(self):
         print("+")
+        return True
 
     def decr(self):
         print("-")
+        return True
 
     def out(self):
         print(".")
+        return True
 
     def inp(self):
         print(",")
+        return True
 
     def jf(self):
         print("[")
+        return True
 
     def jb(self):
         print("]")
+        return True
 
-    def get_instruction():
+    def get_instruction(self):
         instruction = self.code[0]
         self.code = self.code[1:]
         return instruction
 
     def execute(self):
         print("Fucked")
-        self.init_instructions()
         while len(self.code) > 0:
-            instruction = get_instruction()
-            self.instructions[instruction]()
+            instruction = self.get_instruction()
+            if not self.execute_instruction(instruction):
+                break
 
 
 def brain_luck(code, input):
